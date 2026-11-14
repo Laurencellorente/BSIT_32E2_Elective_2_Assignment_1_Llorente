@@ -1,0 +1,119 @@
+﻿@model List<BSIT_32E2_Elective_2_Assignment_1.Models.QuizQuestion>
+
+@{
+    ViewData["Title"] = "BSIT 32E2 - Elective 2 Assignment 1";
+}
+
+<style>
+    body {
+        background-color: #ffffff;
+        color: #111111;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .quiz-container {
+        max-width: 820px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .quiz-header {
+        border-bottom: 2px solid #000000;
+        padding-bottom: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+        .quiz-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .quiz-header p {
+            color: #555555;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+    .question-card {
+        border: 1px solid #d4d4d4;
+        margin-bottom: 2rem;
+        background-color: #ffffff;
+    }
+
+    .question-title {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #d4d4d4;
+        padding: 1rem 1.25rem;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .options-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .option-item {
+        padding: 0.85rem 1.25rem;
+        border-bottom: 1px solid #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+        .option-item:last-child {
+            border-bottom: none;
+        }
+
+    .option-correct {
+        background-color: #000000;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .badge-correct {
+        border: 1px solid #ffffff;
+        padding: 0.15rem 0.5rem;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+    }
+</style>
+
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>BSIT_32E2_Elective_2_Assignment_1</h1>
+        <p>ASP.NET Core Web API &amp; MVC Fundamentals — Answer Key</p>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="question-card">
+            <div class="question-title">
+                @item.Number. @item.Question
+            </div>
+
+            <ul class="options-list">
+                @foreach (var option in item.Options)
+                {
+                    var isCorrect = option.Key == item.CorrectOption;
+                    <li class="option-item @(isCorrect ? "option-correct" : "")">
+                        <span><strong>@option.Key)</strong> @option.Value</span>
+                        @if (isCorrect)
+                        {
+                            <span class="badge-correct">Correct</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

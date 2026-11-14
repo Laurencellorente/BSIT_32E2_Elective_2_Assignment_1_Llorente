@@ -18,12 +18,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Modern .NET 9 static assets mapping
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Quiz}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
